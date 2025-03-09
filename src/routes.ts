@@ -19,7 +19,6 @@ import { ListCategoriesController } from "./Controllers/Categories/ListCategorie
 import { CreateCommentController } from "./Controllers/Comments/CreateCommentController";
 import { ListCommentsByTaskController } from "./Controllers/Comments/ListCommentsByTaskController";
 
-
 const router = Router();
 
 // -- Rotas de usuário -- //
