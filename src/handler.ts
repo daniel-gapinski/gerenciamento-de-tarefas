@@ -1,11 +1,28 @@
 import serverless from "serverless-http";
-import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { router } from "./routes";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API de Gerenciamento de Tarefas',
+            version: '1.0.0',
+            description: 'Documentação da API de tarefas',
+        },
+    },
+    apis: ['./src/routes/*.ts'],
+};
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 app.use(cors());
 app.use(router);

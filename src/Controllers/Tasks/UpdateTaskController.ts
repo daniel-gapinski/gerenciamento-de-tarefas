@@ -6,7 +6,9 @@ class UpdateTaskController {
     async handle(req: Request, res: Response) {
 
         const user_id = req.user_id;
-        const { id, status, priority } = req.body;
+        const { id, status, priority, title, description } = req.body;
+
+        console.log("Recebendo parâmetros:", req.body);
 
         console.log("id da task", id)
 
@@ -20,6 +22,8 @@ class UpdateTaskController {
             status,
             priority,
             updated_at,
+            title,
+            description,
         });
 
         return res.json(update);

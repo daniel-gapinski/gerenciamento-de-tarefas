@@ -6,11 +6,13 @@ interface TaskProps {
     priority: string;
     updated_at: Date | string;
     user_id: string;
+    description: string;
+    title: string;
 }
 
 class UpdateTaskService {
 
-    async execute({ id, status, priority, updated_at, user_id }: TaskProps) {
+    async execute({ id, status, priority, updated_at, user_id, title, description }: TaskProps) {
 
         const userExists = await prismaClient.user.findFirst({
             where: {
@@ -42,6 +44,8 @@ class UpdateTaskService {
                 status: status,
                 priority: priority,
                 updated_at,
+                description: description,
+                title: title,
             },
         });
 
